@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/idenx.css">
+</head>
+
+<body>
+    <canvas id="canvas_animacao" width="500" height="500">
+    </canvas>
+    <script>
+        //referencia canvas
+        var canvas = document.querySelector("#canvas_animacao");
+        var context = canvas.getContext("2d");
+        console.log(canvas);
+        //criando sprites
+        var b1 = new Bola(context);
+        b1.x = 100;
+        var b2 = new Bola(context);
+    </script>
+</body>
+<script src="js/obj/animacao.js"></script>
+<script src="js/obj/bola.js"></script>
+
+</html>
