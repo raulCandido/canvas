@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Spritsheet - recorte e enquadramento</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <link rel="stylesheet" href="css/idenx.css"> -->
+    <script src="js/obj/spritesheet.js"></script>
+    <script src="js/obj/animacao.js"></script>
+    <script src="js/obj/teclado.js"></script>
+    <script src="js/obj/sonic.js"></script>
+
+</head>
+
+<body>
+    <canvas id="canvas_sonic" width="500" height="500">
+
+    </canvas>
+    <script>
+        var canvas = document.querySelector("#canvas_sonic");
+        var context = canvas.getContext("2d");
+
+        var teclado = new Teclado(document);
+        var animacao = new Animacao(context);
+
+
+        var imgSonic = new Image();
+        imgSonic.src = "img/spritesheet.png"
+
+        var sonic = new Sonic(context, teclado, imgSonic);
+        sonic.x = 0;
+        sonic.y = 200;
+        animacao.novoSprite(sonic);
+
+        imgSonic.onload = function () {
+            animacao.ligar();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Spritsheet - recorte e enquadramento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/idenx.css">
+    <script src="js/obj/spritesheet.js"></script>
+
+</head>
+
+<body>
+    <canvas id="canvas_clipping" width="500" height="500">
+
+    </canvas>
+    <script>
+        var canvas = document.querySelector("#canvas_clipping");
+        var context = canvas.getContext("2d");
+        var imgSonic = new Image();
+        imgSonic.src = "img/spritesheet.png"
+
+        var sheet = new SpriteSheet(context, imgSonic, 3, 8);
+
+        sheet.intervalo = 60;
+        sheet.linha = 1;
+        imgSonic.onload = gameLoop;
+
+        function gameLoop() {
+            context.clearRect(0, 0, context.canvas.width, context.canvas.heigth);
+            sheet.proximoQuadro();
+            sheet.desenhar(100, 100);
+            requestAnimationFrame(gameLoop);
+        }
+    </script>
+</body>
+
+</html>
