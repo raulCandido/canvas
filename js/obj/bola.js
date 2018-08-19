@@ -11,12 +11,12 @@ function Bola(context) {
 Bola.prototype = {
     atualizar: function () {
         var context = this.context;
-        if (this.x < this.raio || this.x > context.canvas.width - this.raio) {
-            this.velocidadeX *= -1;
-        }
-        if (this.y < this.raio || this.y > context.canvas.height - this.raio) {
-            this.velocidadeY *= -1;
-        }
+        // if (this.x < this.raio || this.x > context.canvas.width - this.raio) {
+        //     this.velocidadeX *= -1;
+        // }
+        // if (this.y < this.raio || this.y > context.canvas.height - this.raio) {
+        //     this.velocidadeY *= -1;
+        // }
         this.x += this.velocidadeX;
         this.y += this.velocidadeY;
     },
