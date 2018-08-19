@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/idenx.css">
+</head>
+
+<body>
+    <canvas id="canvas_teclado_1" width="500" height="500">
+        Seu navegador não suporta o canvas do HTML5.
+        <br> Procure atualiza-lo.
+    </canvas>
+    <script>
+        var canvas = document.querySelector("#canvas_teclado_1");
+        var context = canvas.getContext("2d");
+        var posicao = 0;
+
+        desenharPersonagem();
+
+        document.addEventListener("keydown", function (evento) {
+            if (evento.keyCode == 37) {
+                posicao -= 10;
+                desenharPersonagem();
+            } else if (evento.keyCode == 39) {
+                posicao += 10;
+                desenharPersonagem();
+            }
+        });
+
+        function desenharPersonagem() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillRect(posicao, 100, 20, 50);
+        }
+    </script>
+</body>
+
+</html>
