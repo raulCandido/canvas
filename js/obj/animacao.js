@@ -1,4 +1,5 @@
-function Animacao() {
+function Animacao(context) {
+    this.context = context;
     this.sprites = [];
     this.ligado = false;
 }
@@ -33,8 +34,7 @@ Animacao.prototype = {
         });
     },
     limparTela: function () {
-        var context = this.context;
-        this.sprites = [];
-        this.ligado = false;
+        var ctx = this.context;
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     }
 }

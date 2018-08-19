@@ -7,23 +7,57 @@
     <title>Canvas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/idenx.css">
+    <script src="js/obj/Animacao.js"></script>
+    <script src="js/obj/Bola.js"></script>
 </head>
 
 <body>
-    <canvas id="canvas_animacao" width="500" height="500">
+    <canvas id="canvas_animacao" width="300" height="300">
     </canvas>
     <script>
         //referencia canvas
         var canvas = document.querySelector("#canvas_animacao");
         var context = canvas.getContext("2d");
-        console.log(canvas);
         //criando sprites
         var b1 = new Bola(context);
         b1.x = 100;
+        b1.y = 200;
+        b1.velocidadeX = 2;
+        b1.velocidadeY = -2;
+        b1.cor = "red";
+        b1.raio = 20;
+
         var b2 = new Bola(context);
+        b2.x = 200;
+        b2.y = 100;
+        b2.velocidadeX = -2;
+        b2.velocidadeY = 2;
+        b2.cor = "blue";
+        b2.raio = 30;
+
+        var b3 = new Bola(context);
+        b3.x = 100;
+        b3.y = 50;
+        b3.velocidadeX = -2;
+        b3.velocidadeY = 2;
+        b3.cor = "black";
+        b3.raio = 30;
+
+        var b4 = new Bola(context);
+        b4.x = 75;
+        b4.y = 25;
+        b4.velocidadeX = -2;
+        b4.velocidadeY = 2;
+        b4.cor = "grey";
+        b4.raio = 10;
+
+        var animacao = new Animacao(context);
+        animacao.novoSprite(b1);
+        animacao.novoSprite(b2);
+        animacao.novoSprite(b3)
+        animacao.novoSprite(b4)
+        animacao.ligar();
     </script>
 </body>
-<script src="js/obj/animacao.js"></script>
-<script src="js/obj/bola.js"></script>
 
 </html>
