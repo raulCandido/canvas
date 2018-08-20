@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Spritsheet - recorte e enquadramento</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- <link rel="stylesheet" href="css/idenx.css"> -->
+    <script src="js/obj/bola.js"></script>
+    <script src="js/obj/colisor.js"></script>
+
+</head>
+
+<body>
+    <canvas id="canvas_colisao" width="500" height="500">
+
+    </canvas>
+    <script>
+        var canvas = document.querySelector("#canvas_colisao");
+        var context = canvas.getContext("2d");
+
+        var b1 = new Bola(context);
+        b1.x = 200;
+        b1.y = 200;
+        b1.velocidadeX = 10;
+        b1.velocidadeY = -5;
+        b1.cor = "blue";
+        b1.raio = "20";
+
+        var b2 = new Bola(context);
+        b2.x = 200;
+        b2.y = 200;
+        b2.velocidadeX = 10;
+        b2.velocidadeY = -5;
+        b2.cor = "red";
+        b2.raio = "30";
+
+        var colisor = new Colisor();
+        colisor.novoSprite(b1);
+        colisor.novoSprite(b2);
+        colisor.aoColidir = function(s1,s2){
+            // alert("bateu");
+        }
+
+        requestAnimationFrame(animar);
+
+        function animar() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            b1.atualizar();
+            b2.atualizar();
+
+            b1.desenhar();
+            b2.desenhar();
+
+            colisor.processar();
+
+            requestAnimationFrame(animar);
+        }
+    </script>
+</body>
+
+</html>
