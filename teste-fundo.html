@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/idenx.css">
+    <script src="js/obj/animacao.js"></script>
+    <script src="js/obj/fundo.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas_fundo" width="300" height="300">
+
+    </canvas>
+    <script>
+        var imgEspaco = new Image();
+        imgEspaco.src = "img/fundo-espaco.png";
+        var imgEstrelas = new Image();
+        imgEstrelas.src = "img/fundo-estrelas.png";
+        var imgNuvens = new Image();
+        imgNuvens.src = "img/fundo-nuvens.png";
+
+        var carregadas = 0;
+        var total = 3;
+
+        imgEspaco.onload = carregando;
+        imgEstrelas.onload = carregando;
+        imgNuvens.onload = carregando;
+
+        function carregando() {
+            carregadas++;
+            if (carregadas == total) {
+                iniciar();
+            }
+        }
+
+        function iniciar() {
+            var canvas = document.querySelector("#canvas_fundo");
+            var context = canvas.getContext("2d");
+
+            var fundoEspaco = new Fundo(context, imgEspaco);
+            var fundoEstrelas = new Fundo(context, imgEstrelas);
+            var fundoNuvens = new Fundo(context, imgNuvens);
+
+            fundoEspaco.velocidade = 2;
+            fundoEstrelas.velocidade = 7;
+            fundoNuvens.velocidade = 10;
+
+            var animacao = new Animacao(context);
+            animacao.novoSprite(fundoEspaco);
+            animacao.novoSprite(fundoEstrelas);
+            animacao.novoSprite(fundoNuvens);
+            animacao.ligar();
+
+        }
+    </script>
+</body>
+
+</html>
