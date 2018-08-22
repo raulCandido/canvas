@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/idenx.css">
+
+    <script src="js/obj/animacao.js"></script>
+    <script src="js/obj/teclado.js"></script>
+    <script src="js/obj/nave.js"></script>
+</head>
+
+<body>
+    <div class="border">
+        <canvas id="canvas_nave" width="500" height="500">
+    
+        </canvas>
+    </div>
+    <script>
+        var canvas = document.querySelector("#canvas_nave");
+        var context = canvas.getContext("2d");
+
+        var teclado = new Teclado(document);
+        var animacao = new Animacao(context);
+
+        var imgNave = new Image();
+        imgNave.src = "img/nave.png";
+        var nave = new Nave(context, teclado, imgNave);
+
+        animacao.novoSprite(nave);
+
+        imgNave.onload = function () {
+            nave.x = (canvas.width / 2) - (imgNave.width / 2);
+            nave.y = (canvas.height / 2) - (imgNave.height / 2);
+            nave.velocidade = 5
+            animacao.ligar();
+        }
+    </script>
+</body>
+
+</html>
