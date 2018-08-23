@@ -14,6 +14,7 @@
     <script src="js/obj/tiro.js"></script>
     <script src="js/obj/colisor.js"></script>
     <script src="js/obj/ovni.js"></script>
+    <script src="js/obj/fundo.js"></script>
 </head>
 
 <body>
@@ -23,6 +24,20 @@
         </canvas>
     </div>
     <script>
+        var imgEspaco = new Image();
+        imgEspaco.src = "img/fundo-espaco.png"
+        imgEspaco.onload = carregando;
+
+
+        var imgEstrelas = new Image();
+        imgEstrelas.src = "img/fundo-estrelas.png"
+        imgEstrelas.onload = carregando;
+
+
+        var imgNuvens = new Image();
+        imgNuvens.src = "img/fundo-nuvens.png"
+        imgNuvens.onload = carregando;
+
         var imgNave = new Image();
         imgNave.src = "img/nave.png";
         imgNave.onload = carregando;
@@ -35,9 +50,23 @@
         var context = canvas.getContext("2d");
 
         var teclado = new Teclado(document);
-        var animcacao = new Animacao(context);
+        var animacao = new Animacao(context);
+
+        var fundo1 = new Fundo(context, imgEspaco);
+        fundo1.velocidade = 3;
+        animacao.novoSprite(fundo1);
+
+        var fundo2 = new Fundo(context, imgEstrelas);
+        fundo2.velocidade = 7;
+        animacao.novoSprite(fundo2);
+
+        var fundo3 = new Fundo(context, imgNuvens);
+        fundo3.velocidade = 5;
+        animacao.novoSprite(fundo3);
+
 
         var nave = new Nave(context, teclado, imgNave);
+        animacao.novoSprite(nave);
 
         var colisor = new Colisor();
         colisor.novoSprite(nave);
@@ -49,7 +78,7 @@
 
         function carregando() {
             carregadas++
-            if (carregadas == 2) {
+            if (carregadas == 5) {
                 iniciar();
             }
         }
@@ -60,14 +89,14 @@
             nave.velocidade = 5;
             animacao.ligar();
 
-            setInterval(novoOvni, 1000);
+            setInterval(novoOvni, 500);
         }
 
         function novoOvni() {
             var ovni = new Ovni(context, imgOvni);
-            ovni.velocidade = Math.floor(Math.random() * (20 - 5 + 1));
+            ovni.velocidade = Math.floor(5 + Math.random() * (20 - 5 + 1));
             ovni.x = Math.floor(Math.random() * (canvas.width - imgOvni.width + 1));
-            ovni.y -= imgOvni.height;
+            ovni.y = -imgOvni.height;
             animacao.novoSprite(ovni);
             colisor.novoSprite(ovni);
         }
